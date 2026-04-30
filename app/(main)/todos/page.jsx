@@ -11,7 +11,7 @@ async function getTodos() {
   return res.json();
 }
 
-export default async function page({ searchParams }) {
+export default async function Page({ searchParams }) {
   const todos = await getTodos();
   const sp = await searchParams;
 

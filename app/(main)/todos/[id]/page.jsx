@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function page({ params }) {
+export default async function Page({ params }) {
   const { id } = await params;
   const todo = await getTodo(id);
 
