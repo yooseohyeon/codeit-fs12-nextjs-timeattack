@@ -3,7 +3,7 @@ import TodoItem from "./_components/TodoItem";
 async function getTodos() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos`);
   if (!res.ok) {
-    throw new error("todo 목록을 가져오는 데 실패했습니다.");
+    throw new Error("todo 목록을 가져오는 데 실패했습니다.");
   }
 
   return res.json();
