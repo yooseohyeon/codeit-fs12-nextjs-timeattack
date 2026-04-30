@@ -7,6 +7,16 @@ async function getTodo(id) {
   return res.json();
 }
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const todo = await getTodo(id);
+
+  return {
+    title: `${todo.title} | Todo App`,
+  };
+}
+
 export default async function page({ params }) {
   const { id } = await params;
 
