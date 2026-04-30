@@ -1,4 +1,4 @@
-import NotFound, { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 
 async function getTodo(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos/${id}`);
