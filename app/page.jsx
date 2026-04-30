@@ -15,12 +15,21 @@ export default function Home() {
       <p className="mb-12 font-medium text-gray-700">
         할 일을 관리해 생산성을 높이는 Todo App
       </p>
-      <Link
-        href="/todos"
-        className="inline-block py-3 px-6 bg-black text-white rounded-lg "
-      >
-        Todo 목록 보기
-      </Link>
+
+      <div className="flex flex-col items-center gap-4">
+        <Link
+          href="/todos"
+          className="inline-block py-3 px-6 border rounded-lg "
+        >
+          Todo 목록 보기
+        </Link>
+        <Link
+          href="/todos/new"
+          className="inline-block py-3 px-6 border rounded-lg "
+        >
+          새로운 Todo 추가하기
+        </Link>
+      </div>
     </main>
   );
 }

@@ -1,5 +1,7 @@
+import Link from "next/link";
 import TodoItem from "./_components/TodoItem";
 import TodoFilter from "./_components/TodoFilter";
+
 async function getTodos() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos`);
   if (!res.ok) {
@@ -22,10 +24,17 @@ export default async function page({ searchParams }) {
   });
 
   return (
-    <main className="flex flex-col p-8">
+    <main className="flex flex-col p-8 gap-8">
+      <h1 className="text-3xl font-bold mt-6">Todo List</h1>
+
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold my-6 mb-8">Todo List</h1>
         <TodoFilter />
+        <Link
+          href="/todos/new"
+          className="inline-block py-3 px-6 border rounded-lg "
+        >
+          새로운 Todo 추가하기
+        </Link>
       </div>
 
       <ul className="flex flex-col gap-6">
