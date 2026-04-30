@@ -9,15 +9,24 @@ async function getTodos() {
   return res.json();
 }
 
-export default async function page() {
+export default async function page({ searchParams }) {
   const todos = await getTodos();
+  const sp = await searchParams;
+
+  const completed = sp?.completed;
+
+  const filtered = todos.filter((todo) => {
+    if (completed === "true") return todo.completed === true;
+    if (completed === "false") return todo.completed === false;
+    return true;
+  });
 
   return (
     <main className="flex flex-col p-8">
       <h1 className="text-3xl font-bold my-6 mb-8">Todo List</h1>
 
       <ul className="flex flex-col gap-6">
-        {todos.map((todo) => (
+        {filtered.map((todo) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
