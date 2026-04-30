@@ -1,6 +1,10 @@
+import NotFound, { notFound } from "next/navigation";
+
 async function getTodo(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos/${id}`);
-  if (!res.ok) {
+  if (!res.ok && res.status === 404) {
+    return null;
+  } else if (!res.ok) {
     throw new Error("개별 todo를 가져오는 데 실패했습니다.");
   }
 
@@ -9,7 +13,6 @@ async function getTodo(id) {
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-
   const todo = await getTodo(id);
 
   return {
@@ -19,8 +22,11 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
   const { id } = await params;
-
   const todo = await getTodo(id);
+
+  if (!todo) {
+    notFound();
+  }
 
   return (
     <main className="flex flex-col p-8">
